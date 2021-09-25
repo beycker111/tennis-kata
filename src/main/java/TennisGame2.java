@@ -3,8 +3,8 @@ import java.util.List;
 
 public class TennisGame2 implements TennisGame
 {
-    private int playerOnePoints = 0;
-    private int playerTwoPoints = 0;
+    private int player1Points = 0;
+    private int player2Points = 0;
 
     private final String player1Name;
     private final String player2Name;
@@ -21,10 +21,10 @@ public class TennisGame2 implements TennisGame
         if (isTie()){
             stringBuilder.append(equalScores());
         }else if(playerFourPointsMore()){
-            int scoreDifference = playerOnePoints - playerTwoPoints;
+            int scoreDifference = player1Points - player2Points;
             stringBuilder.append(getAdeventage(scoreDifference));
         }else {
-            stringBuilder.append(getScore(playerOnePoints)).append("-").append(getScore(playerTwoPoints));
+            stringBuilder.append(getScore(player1Points)).append("-").append(getScore(player2Points));
         }
 
         return stringBuilder.toString();
@@ -32,16 +32,16 @@ public class TennisGame2 implements TennisGame
 
     public void setPoints(String player) {
         if(player.equals(this.player1Name)){
-            playerOnePoints++;
+            player1Points++;
         }
         if(player.equals(this.player2Name)){
-            playerTwoPoints++;
+            player2Points++;
         }
     }
 
     public String equalScores() {
         List<String> scores = Arrays.asList("Love-All", "Fifteen-All", "Thirty-All", "Deuce", "Deuce");
-        return scores.get(playerOnePoints);
+        return scores.get(player1Points);
     }
 
     public String getScore(int scorePlayer){
@@ -61,10 +61,10 @@ public class TennisGame2 implements TennisGame
     }
 
     public boolean playerFourPointsMore(){
-        return playerOnePoints >= 4 || playerTwoPoints >= 4;
+        return player1Points >= 4 || player2Points >= 4;
     }
 
     public boolean isTie(){
-        return playerOnePoints == playerTwoPoints;
+        return player1Points == player2Points;
     }
 }
